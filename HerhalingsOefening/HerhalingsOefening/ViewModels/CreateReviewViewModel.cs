@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using HerhalingsOefening.Models;
@@ -20,12 +21,39 @@ namespace HerhalingsOefening.ViewModels
             this._restaurantAppService = restaurantAppService;
         }
 
-        private int[] _scoreNumbers = new int[] {1,2,3,4,5};
+        private string _error;
 
-        public int[] ScoreNumbers
+        public string Error
+        {
+            get { return _error; }
+            set { _error = value; }
+        }
+
+
+        private Review _review = new Review();
+
+        public Review Review
+        {
+            get { return _review; }
+            set
+            {
+                _review = value;
+                RaisePropertyChanged(() => Review);
+
+            }
+        }
+
+
+        private decimal[] _scoreNumbers = new decimal[] {1,2,3,4,5};
+
+        public decimal[] ScoreNumbers
         {
             get { return _scoreNumbers; }
-            set { _scoreNumbers = value; }
+            set
+            {
+                _scoreNumbers = value;
+                RaisePropertyChanged(()=>ScoreNumbers);
+            }
         }
 
 
@@ -43,16 +71,18 @@ namespace HerhalingsOefening.ViewModels
             }
         }
 
-        private Review _review;
 
-        public Review Review
+        private void SendData()
         {
-            get { return _review; }
-            set
+            if (Review.Score == 0 || string.IsNullOrEmpty(Review.UserName))
             {
-                _review = value;
-                RaisePropertyChanged(()=>Review);
-                
+                Error = "Gelieve jouw naam en een score in te vullen!";
+
+            }
+            else
+            {
+                _restaurantAppService.AddReview(_restaurant.Id.ToString(), Review);
+                _navigationService.GoBack();
             }
         }
 
@@ -63,16 +93,8 @@ namespace HerhalingsOefening.ViewModels
             {
                 return new RelayCommand(() =>
                 {
-                    try
-                    {
-                        _restaurantAppService.AddReview(_restaurant.Id.ToString(), Review);
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine("Exception Message: " + ex.Message);
-                        throw;
-                    }
-                    _navigationService.GoBack();
+                    SendData();
+                    
                 });
             }
         }
