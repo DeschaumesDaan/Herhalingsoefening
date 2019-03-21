@@ -6,13 +6,13 @@
         <StackLayout>
             <Label Text="Ik ben"></Label>
             <Entry Text="{Binding Review.UserName, Mode=TwoWay}"></Entry>
-            <Label TextColor="Red" Text="{Binding Error}"></Label>            
+            <Label TextColor="Red" Text="{Binding Error, Mode=TwoWay}"></Label>            
             <Label Text="Review"></Label>
             <Entry Text="{Binding Review.Comment, Mode=TwoWay}"></Entry>
             <Label Text="Score"></Label>
             <Picker SelectedItem="{Binding Review.Score, Mode=TwoWay}" ItemsSource="{Binding ScoreNumbers}">
             </Picker>
-            <Label TextColor="Red" Text="{Binding Error}"></Label>
+            <Label TextColor="Red" Text="{Binding Error, Mode=TwoWay}"></Label>
             <Button Text="Opslaan" Command="{Binding SaveReviewCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>

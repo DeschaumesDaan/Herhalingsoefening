@@ -26,7 +26,11 @@ namespace HerhalingsOefening.ViewModels
         public string Error
         {
             get { return _error; }
-            set { _error = value; }
+            set
+            {
+                _error = value;
+                RaisePropertyChanged(()=>Error);
+            }
         }
 
 
