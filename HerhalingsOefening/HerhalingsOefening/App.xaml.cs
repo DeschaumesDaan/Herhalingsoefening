@@ -5,6 +5,7 @@ using HerhalingsOefening.Views;
 using OnBoardingOefening.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using SettingsView = HerhalingsOefening.Views.SettingsView;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace HerhalingsOefening
@@ -27,6 +28,7 @@ namespace HerhalingsOefening
             nav.Configure(ServiceLocator.MainPage, typeof(MainPage));
             nav.Configure(ServiceLocator.ReviewView, typeof(ReviewView));
             nav.Configure(ServiceLocator.CreateReview, typeof(CreateReview));
+            nav.Configure(ServiceLocator.SettingsView, typeof(SettingsView));
             //configure other navs here!
 
             SimpleIoc.Default.Register<ICustomNavigation>(()=>nav);

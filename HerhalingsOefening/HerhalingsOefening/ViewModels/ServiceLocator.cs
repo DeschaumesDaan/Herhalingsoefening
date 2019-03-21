@@ -13,6 +13,7 @@ namespace HerhalingsOefening.ViewModels
         public const string MainPage = "MainPage";
         public const string ReviewView = "ReviewView";
         public const string CreateReview = "CreateReview";
+        public const string SettingsView = "SettingsView";
 
 
         public ServiceLocator()
@@ -24,6 +25,7 @@ namespace HerhalingsOefening.ViewModels
             SimpleIoc.Default.Register<MainPageViewModel>();
             SimpleIoc.Default.Register<ReviewViewModel>();
             SimpleIoc.Default.Register<CreateReviewViewModel>();
+            SimpleIoc.Default.Register<SettingsViewModel>();
         }
 
         public MainPageViewModel MainPageViewModel
@@ -45,6 +47,11 @@ namespace HerhalingsOefening.ViewModels
         public CreateReviewViewModel CreateReviewViewModel
         {
             get { return SimpleIoc.Default.GetInstance<CreateReviewViewModel>(); }
+        }
+
+        public SettingsViewModel SettingsViewModel
+        {
+            get { return SimpleIoc.Default.GetInstance<SettingsViewModel>(); }
         }
     }
 }

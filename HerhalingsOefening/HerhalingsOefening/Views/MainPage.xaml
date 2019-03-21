@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:HerhalingsOefening"
              x:Class="HerhalingsOefening.Views.MainPage">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="settings.png" Command="{Binding ToolbarItemCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ListView ItemsSource="{Binding Restaurants}" SelectedItem="{Binding Restaurant, Mode=TwoWay}">
         <ListView.ItemTemplate>
             <DataTemplate>

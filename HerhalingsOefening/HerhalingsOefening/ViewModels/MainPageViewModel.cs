@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using HerhalingsOefening.Models;
 using HerhalingsOefening.Services;
+using HerhalingsOefening.Views;
 using OnBoardingOefening.Services;
 using Xamarin.Forms;
 
@@ -29,9 +30,21 @@ namespace HerhalingsOefening.ViewModels
             Restaurants = await _restaurantAppService.GetRestaurants();
         }
 
-        
+        public RelayCommand ToolbarItemCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    _navigationService.NavigateTo(ServiceLocator.SettingsView);
 
-        
+                });
+            }
+        }
+
+
+
+
 
 
         private List<Restaurant> _restaurants;
